@@ -3,6 +3,8 @@
 
 This repository provides a Docker Compose setup for running a local RabbitMQ environment with management UI and SSL/TLS support for secure messaging.
 
+![RabbitMq Stack](./assets/rabbitmq-stack.drawio.svg)
+
 ## 📁 Contents
 
 - `docker-compose.yml`: RabbitMQ with management plugin enabled
@@ -22,6 +24,8 @@ This repository provides a Docker Compose setup for running a local RabbitMQ env
 - **SSL/TLS Support**: Secure connections using custom certificates for encrypted messaging
 
 All containers run within a dedicated `rabbitmq-network` Docker bridge network for inter-service communication.
+
+<br/>
 
 ## 🚀 Setup & Usage
 
