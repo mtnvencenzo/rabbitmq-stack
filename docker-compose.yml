@@ -2,7 +2,6 @@ name: rabbitmq-stack
 
 services:
   rabbitmq:
-    hostname: rabbitmq.docker.local
     container_name: rabbitmq
     image: rabbitmq:4-management
     ports:
@@ -17,21 +16,17 @@ services:
       interval: 5s
       timeout: 15s
       retries: 30
-
     networks:
-      rabbitmq-network:
-        aliases:
-          - rabbitmq.docker.local
+      app-internal-network:
     volumes:
       - ./rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf:ro
-      - ${DOCKER_LOCAL_CERT_PATH:-$HOME/Github/dev-certs/docker-local}/docker-local.crt:/etc/rabbitmq/certs/docker-local.crt:ro
-      - ${DOCKER_LOCAL_CERT_PATH:-$HOME/Github/dev-certs/docker-local}/docker-local.key:/etc/rabbitmq/certs/docker-local.key:ro
       - vol_rabbitmq-lib:/var/lib/rabbitmq
       - vol_rabbitmq-logs:/var/log/rabbitmq
 
 networks:
-  rabbitmq-network:
-    driver: bridge
+  app-internal-network:
+    external: true
+    name: app-internal-network
 
 volumes:
   vol_rabbitmq-lib:
